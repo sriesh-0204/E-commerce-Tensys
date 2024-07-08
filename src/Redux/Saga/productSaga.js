@@ -1,13 +1,13 @@
 import { call, fork, put, takeLatest } from "redux-saga/effects";
-import API_URLS from "../../Constant/apiConstant";
-import { getRequest } from "../../Api/axiosClient";
+import { getRequest } from "../../api/axiosClient";
 import { PRODUCT_REQUEST, fetchProduct_Error, fetchProduct_Success } from "../Actions/productAction";
+import API_URLS from "../../constant/apiConstant";
 
 function* fetchProductSaga() {
     try {
-      const productResponse = yield call(getRequest(
-        `${API_URLS.BASE_URL}`
-      ));
+      const productResponse = yield call(getRequest,
+        API_URLS.BASE_URL
+      );
       console.log(productResponse,'productResponse')
       yield put(fetchProduct_Success(productResponse?.data));
     } catch (e) {

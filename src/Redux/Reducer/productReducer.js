@@ -5,13 +5,14 @@ loading: false,
 data:[]
 }
 
-const productReducer =(state=initialState, action={},payload)=>{
+const productReducer =(state=initialState, action={})=>{
     switch(action.type){
         case PRODUCT_REQUEST: {
             return {...state, loading:true}
         }
         case PRODUCT_SUCCESS:{
-            return {...state,loading:false,data:action.payload}
+            console.log(action,'action')
+            return {...state,loading:false,data:action.response}
         }
         case PRODUCT_ERROR:{
             return{...state,loading:false,}

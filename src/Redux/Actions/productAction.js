@@ -2,17 +2,16 @@ const PRODUCT_REQUEST ='PRODUCT_REQUEST';
 const PRODUCT_SUCCESS ='PRODUCT_SUCCESS';
 const PRODUCT_ERROR ='PRODUCT_ERROR';
 
-const fetchProduct_Request =(payload)=>{
+const fetchProduct_Request =()=>{
     return{
         type:PRODUCT_REQUEST,
-        payload
     };
 };
 
 const fetchProduct_Success =(response)=>{
     return{
         type: PRODUCT_SUCCESS,
-        Response
+        response
     };
 };
 

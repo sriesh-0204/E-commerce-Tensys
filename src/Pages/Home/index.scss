@@ -1,0 +1,74 @@
+@import "../../stylesheet/variable.scss";
+@import "../../stylesheet/common.scss";
+
+.product {
+    &-image {
+        img {
+            width: 82%;
+            height: 200px;
+            object-fit: contain;
+            margin: 1rem auto;
+        }
+    }
+
+    &-container {
+        width: 81%;
+        margin: 0 auto;
+        padding: 4rem 0;
+    }
+
+    &-list {
+        margin-right: 2rem;
+        margin-bottom: 2rem;
+        background-color: $white;
+        width: 30%;
+
+    }
+
+    &-search-bar {
+        input {
+            padding: 0.5rem 1rem;
+        }
+
+        button{
+            background-color: $black-color;
+        color: $white;
+        padding: 0.6rem;
+        }
+    }
+
+    &-description {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 5;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        height: 6rem;
+        margin-bottom: 1rem;
+    }
+
+    &-no-data {
+        width: 35%;
+        margin: 0 auto;
+    }
+}
+
+.loader{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.star {
+    cursor: pointer;
+    font-size: 2rem;
+    margin: 5px;
+
+    span {
+        display: flex;
+
+        svg {
+            width: 28px;
+        }
+    }
+}
