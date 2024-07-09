@@ -1,4 +1,5 @@
 export const Images ={
     Images : require(`./coffee-1.jpg`),
-    NO_Data: require(`./no-data.jpg`)
+    NO_Data: require(`./no-data.jpg`),
+    E_Commerce: require(`./e-commerce.png`)
 }
