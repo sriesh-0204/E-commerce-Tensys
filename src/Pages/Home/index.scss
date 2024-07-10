@@ -37,7 +37,14 @@
     &-container {
         width: 81%;
         margin: 0 auto;
-        padding: 4rem 0;
+    }
+    &-back-button {
+        background-color: $black-color;
+        width: 72px;
+        color: $white;
+        border-radius: 4px;
+        padding: 6px;
+        cursor: pointer;
     }
 
     &-list {
@@ -45,6 +52,11 @@
         margin-bottom: 2rem;
         background-color: $white;
         width: 30%;
+        cursor: pointer;
+
+        &:hover{
+            box-shadow: 0 0 1rem 1rem #d6d7da41;
+        }
         @media only screen and (max-width: 768px) {
             width: 100%;
         }

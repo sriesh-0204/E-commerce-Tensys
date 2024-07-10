@@ -11,7 +11,9 @@ class Home extends Component {
     state = {
         searchQuery: '',
         filteredProducts: [],
-        productItem: ''
+        productItem: '',
+        listshow: true,
+        productDetail: false
     };
 
     componentDidMount() {
@@ -36,9 +38,11 @@ class Home extends Component {
     };
 
     productDetails = (data) => {
-        this.setState({ productItem: data });
-        console.log(this.state.productItem, 'productItem');
-        console.log(data, 'data');
+        this.setState({ productItem: data, productDetail: true, listshow: false });
+    }
+
+    handleBackClick = () => {
+        this.setState({ productDetail: false, listshow: true });
     }
 
     render() {
@@ -47,17 +51,18 @@ class Home extends Component {
 
         return (
             <div className="product">
-                <div className="product-container">
-                    {filteredProducts &&
+                <div className="product-container py-8">
+                    {
+                        this.state.listshow &&
                         <div className="product-search-bar mb-4">
-                            <input
-                                type="text"
-                                placeholder="Search products..."
-                                value={searchQuery}
-                                onChange={this.handleSearchChange}
-                            />
-                            <button onClick={this.handleSearchClick}><FaMagnifyingGlass /></button>
-                        </div>
+                        <input
+                            type="text"
+                            placeholder="Search products..."
+                            value={searchQuery}
+                            onChange={this.handleSearchChange}
+                        />
+                        <button onClick={this.handleSearchClick}><FaMagnifyingGlass /></button>
+                    </div>
                     }
                     {loading ? (
                         <div className="loader">
@@ -69,30 +74,36 @@ class Home extends Component {
                         </div>
                     ) : (
                         <div className="flex flex-wrap">
-                            {filteredProducts.length > 0 ? (
-                                filteredProducts.map((productData) => (
-                                    <div className="product-list w-auto lg:w-1/4" key={productData.id} onClick={() => this.productDetails(productData)}>
-                                        <div className="product-image">
-                                            <img src={productData.image} alt={productData.title} />
-                                        </div>
-                                        <div className="product-text p-4">
-                                            <h4>{productData.title}</h4>
-                                            <div className="product-star flex justify-between">
-                                                <div className="product-price">
-                                                    {productData.price}</div>
-                                                <Rate disabled allowHalf defaultValue={productData.rating.rate} />
-
+                            {this.state.listshow && (
+                                <>
+                                    {filteredProducts.length > 0 ? (
+                                        filteredProducts.map((productData) => (
+                                            <div className="product-list w-auto lg:w-1/4" key={productData.id} onClick={() => this.productDetails(productData)}>
+                                                <div className="product-image">
+                                                    <img src={productData.image} alt={productData.title} />
+                                                </div>
+                                                <div className="product-text p-4">
+                                                    <h4>{productData.title}</h4>
+                                                    <div className="product-star flex justify-between">
+                                                        <div className="product-price">
+                                                            {productData.price}
+                                                        </div>
+                                                        <Rate disabled allowHalf defaultValue={productData.rating.rate} />
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                ))
-                            ) : (
-                                <img src={Images.NO_Data} className="product-no-data" alt="No data" />
+                                        ))
+                                    ) : (
+                                        <img src={Images.NO_Data} className="product-no-data" alt="No data" />
+                                    )}
+                                </>
                             )}
                         </div>
                     )}
                 </div>
-                <ProductDetails product={productItem} />
+                {this.state.productDetail && (
+                    <ProductDetails product={productItem} onBackClick={this.handleBackClick} />
+                )}
             </div>
         );
     }

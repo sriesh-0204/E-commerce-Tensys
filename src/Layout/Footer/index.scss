@@ -1,0 +1,8 @@
+@import '../../stylesheet/variable.scss';
+.footer{
+    background-color: $black-color;
+    color: $white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
